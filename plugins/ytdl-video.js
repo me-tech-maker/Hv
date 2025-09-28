@@ -7,7 +7,7 @@ cmd({
     alias: ["mp4", "song"],
     react: "🎥",
     desc: "Download video from YouTube",
-    category: "DWLD",
+    category: "download",
     use: ".video <query or url>",
     filename: __filename
 }, async (conn, m, mek, { from, q, reply }) => {
