@@ -1,8 +1,8 @@
 const { cmd } = require("../command");
 
 cmd({
-  pattern: "person",
-  alias: ["userinfo", "profile", "whois", "checkuser"],
+  pattern: "profil",
+  alias: ["userinfo", "person", "whois", "checkuser"],
   desc: "Get full WhatsApp user profile information",
   category: "utility",
   filename: __filename
