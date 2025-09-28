@@ -4,129 +4,106 @@ const { cmd } = require("../command");
 
 const OWNER_PATH = path.join(__dirname, "../lib/sudo.json");
 
-// Ensure the sudo.json file exists
+// Créer le fichier sudo.json si inexistant
 const ensureOwnerFile = () => {
   if (!fs.existsSync(OWNER_PATH)) {
     fs.writeFileSync(OWNER_PATH, JSON.stringify([]));
   }
 };
+ensureOwnerFile();
 
-// Command: Add a temporary owner
+// 🔧 Utilitaire pour lire/écrire le fichier owner
+const getOwners = () => JSON.parse(fs.readFileSync(OWNER_PATH, "utf-8"));
+const saveOwners = (owners) => fs.writeFileSync(OWNER_PATH, JSON.stringify([...new Set(owners)], null, 2));
+
+const getTargetUser = (m, args) => {
+  const raw =
+    m.mentionedJid?.[0] ||
+    m.quoted?.sender ||
+    (args[0]?.replace(/[^0-9]/g, "") || null);
+
+  if (!raw) return null;
+  return raw.endsWith("@s.whatsapp.net") ? raw : raw + "@s.whatsapp.net";
+};
+
+// 📌 setsudo: Ajouter un owner temporaire
 cmd({
-    pattern: "setsudo",
-    alias: ["addsudo", "sudoadd"],
-    desc: "Add a temporary owner",
-    category: "owner",
-    react: "😇",
-    filename: __filename
-}, async (conn, mek, m, { from, args, q, isCreator, reply }) => {
-    try {
-        if (!isCreator) return reply("_❗This Command Can Only Be Used By My Owner!_");
+  pattern: "setsudo",
+  alias: ["addsudo", "sudo add"],
+  desc: "Add a temporary owner",
+  category: "owner",
+  react: "😇",
+  filename: __filename
+}, async (conn, mek, m, { from, args, isCreator, reply }) => {
+  if (!isCreator) return reply("_❗ ᴏɴʟʏ ᴛʜᴇ ʙᴏᴛ ᴏᴡɴᴇʀ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ._");
 
-        // Identify the target user
-        let target = m.mentionedJid?.[0] 
-            || (m.quoted?.sender ?? null)
-            || (args[0]?.replace(/[^0-9]/g, '') + "@s.whatsapp.net");
+  const target = getTargetUser(m, args);
+  if (!target) return reply("❌ ᴘʟᴇᴀsᴇ ᴛᴀɢ, ʀᴇᴘʟʏ ᴏʀ ᴇɴᴛᴇʀ ᴀ ᴠᴀʟɪᴅ ɴᴜᴍʙᴇʀ.");
 
-        if (!target) return reply("❌ Please provide a number or tag/reply a user.");
+  const owners = getOwners();
+  if (owners.includes(target)) {
+    return reply("⚠️ ᴛʜɪs ᴜsᴇʀ ɪs ᴀʟʀᴇᴀᴅʏ ᴀ sᴜᴅᴏ ᴏᴡɴᴇʀ.");
+  }
 
-        let owners = JSON.parse(fs.readFileSync(OWNER_PATH, "utf-8"));
+  saveOwners([...owners, target]);
 
-        if (owners.includes(target)) {
-            return reply("❌ This user is already a temporary owner.");
-        }
-
-        owners.push(target);
-        const uniqueOwners = [...new Set(owners)];
-        fs.writeFileSync(OWNER_PATH, JSON.stringify(uniqueOwners, null, 2));
-
-        const successMsg = "✅ Successfully Added User As Temporary Owner";
-        await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/p1xybt.jpg" },
-            caption: successMsg
-        }, { quoted: mek });
-    } catch (err) {
-        console.error(err);
-        reply("❌ Error: " + err.message);
-    }
+  await conn.sendMessage(from, {
+    image: { url: "https://files.catbox.moe/p1xybt.jpg" },
+    caption: `✅ ᴀᴅᴅᴇᴅ @${target.replace(/@s\.whatsapp\.net$/, "")} ᴀs sᴜᴅᴏ ᴏᴡɴᴇʀ.`,
+    mentions: [target]
+  }, { quoted: mek });
 });
 
-// Command: Remove a temporary owner
+// 📌 delsudo: Supprimer un owner temporaire
 cmd({
-    pattern: "delsudo",
-    alias: ["delowner", "deletesudo"],
-    desc: "Remove a temporary owner",
-    category: "owner",
-    react: "🫩",
-    filename: __filename
-}, async (conn, mek, m, { from, args, q, isCreator, reply }) => {
-    try {
-        if (!isCreator) return reply("_❗This Command Can Only Be Used By My Owner!_");
+  pattern: "delsudo",
+  alias: ["delowner", "deletesudo"],
+  desc: "Remove a temporary owner",
+  category: "owner",
+  react: "🫩",
+  filename: __filename
+}, async (conn, mek, m, { from, args, isCreator, reply }) => {
+  if (!isCreator) return reply("_❗ ᴏɴʟʏ ᴛʜᴇ ʙᴏᴛ ᴏᴡɴᴇʀ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ._");
 
-        let target = m.mentionedJid?.[0] 
-            || (m.quoted?.sender ?? null)
-            || (args[0]?.replace(/[^0-9]/g, '') + "@s.whatsapp.net");
+  const target = getTargetUser(m, args);
+  if (!target) return reply("❌ ᴘʟᴇᴀsᴇ ᴛᴀɢ, ʀᴇᴘʟʏ ᴏʀ ᴇɴᴛᴇʀ ᴀ ᴠᴀʟɪᴅ ɴᴜᴍʙᴇʀ.");
 
-        if (!target) return reply("❌ Please provide a number or tag/reply a user.");
+  const owners = getOwners();
+  if (!owners.includes(target)) {
+    return reply("⚠️ ᴛʜɪs ᴜsᴇʀ ɪs ɴᴏᴛ ᴀ sᴜᴅᴏ ᴏᴡɴᴇʀ.");
+  }
 
-        let owners = JSON.parse(fs.readFileSync(OWNER_PATH, "utf-8"));
+  saveOwners(owners.filter(x => x !== target));
 
-        if (!owners.includes(target)) {
-            return reply("❌ User not found in owner list.");
-        }
-
-        const updated = owners.filter(x => x !== target);
-        fs.writeFileSync(OWNER_PATH, JSON.stringify(updated, null, 2));
-
-        const successMsg = "✅ Successfully Removed User As Temporary Owner";
-        await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/p1xybt.jpg" },
-            caption: successMsg
-        }, { quoted: mek });
-    } catch (err) {
-        console.error(err);
-        reply("❌ Error: " + err.message);
-    }
+  await conn.sendMessage(from, {
+    image: { url: "https://files.catbox.moe/p1xybt.jpg" },
+    caption: `✅ ʀᴇᴍᴏᴠᴇᴅ @${target.replace(/@s\.whatsapp\.net$/, "")} ғʀᴏᴍ sᴜᴅᴏ ᴏᴡɴᴇʀs.`,
+    mentions: [target]
+  }, { quoted: mek });
 });
 
-// Command: List all temporary owners
+// 📌 listsudo: Liste des owners temporaires
 cmd({
-    pattern: "listsudo",
-    alias: ["listowner"],
-    desc: "List all temporary owners",
-    category: "owner",
-    react: "📋",
-    filename: __filename
+  pattern: "getsudo",
+  alias: ["listowner"],
+  desc: "List all temporary owners",
+  category: "owner",
+  react: "📋",
+  filename: __filename
 }, async (conn, mek, m, { from, isCreator, reply }) => {
-    try {
-        if (!isCreator) return reply("_❗This Command Can Only Be Used By My Owner!_");
+  if (!isCreator) return reply("_❗ ᴏɴʟʏ ᴛʜᴇ ʙᴏᴛ ᴏᴡɴᴇʀ ᴄᴀɴ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ._");
 
-        let owners = JSON.parse(fs.readFileSync(OWNER_PATH, "utf-8"));
-        owners = [...new Set(owners)];
+  const owners = getOwners();
 
-        if (owners.length === 0) {
-            return reply("❌ No temporary owners found.");
-        }
+  if (owners.length === 0) {
+    return reply("📭 ɴᴏ sᴜᴅᴏ ᴏᴡɴᴇʀs ғᴏᴜɴᴅ.");
+  }
 
-        let listMessage = `
-⭓───────────────⭓
- LIST OF SUDO OWNERS
-⭓───────────────⭓\n\n`;
+  const list = owners.map((id, i) => `${i + 1}. @${id.replace(/@s\.whatsapp\.net$/, "")}`).join("\n");
 
-        owners.forEach((owner, i) => {
-            listMessage += `│ ${i + 1}. ${owner.replace("@s.whatsapp.net", "")}\n`;
-        });
-
-        listMessage += `
-╰──────────────────⭓
-> *ᴍᴀᴅᴇ ɪɴ ʙʏ ɪɴᴄᴏɴɴᴜ ʙᴏʏ*`;
-
-        await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/p1xybt.jpg" },
-            caption: listMessage
-        }, { quoted: mek });
-    } catch (err) {
-        console.error(err);
-        reply("❌ Error: " + err.message);
-    }
+  await conn.sendMessage(from, {
+    image: { url: "https://files.catbox.moe/p1xybt.jpg" },
+    caption: `🤴 *ʟɪsᴛ ᴏғ sᴜᴅᴏ ᴏᴡɴᴇʀs:*\n\n${list}`,
+    mentions: owners
+  }, { quoted: mek });
 });
