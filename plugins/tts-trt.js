@@ -9,7 +9,7 @@ cmd({
     alias: ["translate"],
     desc: "🌍 Translate text into any language",
     react: "⚡",
-    category: "other",
+    category: "general",
     filename: __filename
 },
 async (conn, mek, m, { from, q, reply }) => {
