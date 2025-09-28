@@ -7,7 +7,7 @@ cmd({
     alias: ["getpair", "code"],
     react: "✅",
     desc: "Get WhatsApp pairing code",
-    category: "download",
+    category: "general",
     use: ".pair +55434567890",
     filename: __filename
 }, 
