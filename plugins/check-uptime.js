@@ -6,7 +6,7 @@ cmd({
     pattern: "uptime",
     alias: ["runtime", "run"],
     desc: "Show bot uptime with stylish formats",
-    category: "main",
+    category: "general",
     react: "⏱️",
     filename: __filename
 },
