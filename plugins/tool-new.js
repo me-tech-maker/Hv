@@ -4,7 +4,7 @@ const {cmd , commands} = require('../command')
 cmd({
     pattern: "rcolor",
     desc: "Generate a random color with name and code.",
-    category: "utility",
+    category: "tools",
     filename: __filename,
 }, 
 async (conn, mek, m, { reply }) => {
@@ -27,7 +27,7 @@ async (conn, mek, m, { reply }) => {
 cmd({
     pattern: "binary",
     desc: "Convert text into binary format.",
-    category: "utility",
+    category: "tools",
     filename: __filename,
 }, 
 async (conn, mek, m, { args, reply }) => {
@@ -49,7 +49,7 @@ async (conn, mek, m, { args, reply }) => {
 cmd({
     pattern: "dbinary",
     desc: "Decode binary string into text.",
-    category: "utility",
+    category: "tools",
     filename: __filename,
 }, 
 async (conn, mek, m, { args, reply }) => {
@@ -72,7 +72,7 @@ async (conn, mek, m, { args, reply }) => {
 cmd({
     pattern: "base64",
     desc: "Encode text into Base64 format.",
-    category: "utility",
+    category: "tools",
     filename: __filename,
 }, 
 async (conn, mek, m, { args, reply }) => {
@@ -96,7 +96,7 @@ async (conn, mek, m, { args, reply }) => {
 cmd({
     pattern: "unbase64",
     desc: "Decode Base64 encoded text.",
-    category: "utility",
+    category: "tools",
     filename: __filename,
 }, 
 async (conn, mek, m, { args, reply }) => {
@@ -120,7 +120,7 @@ async (conn, mek, m, { args, reply }) => {
 cmd({
     pattern: "urlencode",
     desc: "Encode text into URL encoding.",
-    category: "utility",
+    category: "tools",
     filename: __filename,
 }, 
 async (conn, mek, m, { args, reply }) => {
@@ -140,7 +140,7 @@ async (conn, mek, m, { args, reply }) => {
 cmd({
     pattern: "urldecode",
     desc: "Decode URL encoded text.",
-    category: "utility",
+    category: "tools",
     filename: __filename,
 }, 
 async (conn, mek, m, { args, reply }) => {
@@ -243,7 +243,7 @@ async (conn, mek, m, { args, reply }) => {
 cmd({
     pattern: "timenow",
     desc: "Check the current local time.",
-    category: "utility",
+    category: "tools",
     filename: __filename,
 }, 
 async (conn, mek, m, { reply }) => {
@@ -271,7 +271,7 @@ async (conn, mek, m, { reply }) => {
 cmd({
     pattern: "date",
     desc: "Check the current date.",
-    category: "utility",
+    category: "general",
     filename: __filename,
 }, 
 async (conn, mek, m, { reply }) => {
@@ -456,7 +456,7 @@ cmd({
     pattern: "calculate",
     alias: ["calculator"],
     desc: "Evaluate a mathematical expression.",
-    category: "utilities",
+    category: "tools",
     filename: __filename
 },
 async (conn, mek, m, { args, reply }) => {
