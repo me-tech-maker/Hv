@@ -5,11 +5,11 @@ const { ytsearch } = require('@dark-yasiya/yt-dl.js');
 // MP4 video download
 
 cmd({ 
-    pattern: "mp4", 
-    alias: ["video"], 
+    pattern: "video", 
+    alias: ["mp4"], 
     react: "🎥", 
     desc: "Download YouTube video", 
-    category: "main", 
+    category: "download", 
     use: '.mp4 < Yt url or Name >', 
     filename: __filename 
 }, async (conn, mek, m, { from, prefix, quoted, q, reply }) => { 
@@ -62,7 +62,7 @@ cmd({
     alias: ["play", "mp3"], 
     react: "🎶", 
     desc: "Download YouTube song", 
-    category: "main", 
+    category: "download", 
     use: '.song <query>', 
     filename: __filename 
 }, async (conn, mek, m, { from, sender, reply, q }) => { 
