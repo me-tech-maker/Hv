@@ -28,7 +28,7 @@ cmd({
 
     desc: "React to channel messages with stylized text",
 
-    category: "owner",
+    category: "general",
 
     use: '.chr <channel-link> <text>',
 
