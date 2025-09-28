@@ -7,7 +7,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 cmd({
   pattern: "ping",
   desc: "Check bot's response time.",
-  category: "main",
+  category: "general",
   react: "🍂",
   filename: __filename
 },
