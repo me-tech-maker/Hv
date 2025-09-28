@@ -4,7 +4,7 @@ const { cmd } = require('../command');
 cmd({
     pattern: "movie",
     desc: "Fetch detailed information about a movie.",
-    category: "utility",
+    category: "search",
     react: "🎬",
     filename: __filename
 },
