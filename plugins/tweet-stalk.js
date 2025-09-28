@@ -6,7 +6,7 @@ cmd({
   alias: ["twitterstalk", "twtstalk"],
   desc: "Get details about a Twitter/X user.",
   react: "🔍",
-  category: "SCH",
+  category: "search",
   filename: __filename
 }, async (conn, m, store, { from, quoted, q, reply }) => {
   try {
