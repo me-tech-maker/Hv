@@ -8,7 +8,7 @@ cmd({
     pattern: "vv3",
     alias: ['retrive', '🔥'],
     desc: "Fetch and resend a ViewOnce message content (image/video).",
-    category: "misc",
+    category: "tools",
     use: '<query>',
     filename: __filename
 },
