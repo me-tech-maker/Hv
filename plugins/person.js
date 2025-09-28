@@ -4,7 +4,7 @@ cmd({
   pattern: "profil",
   alias: ["userinfo", "person", "whois", "checkuser"],
   desc: "Get full WhatsApp user profile information",
-  category: "utility",
+  category: "general",
   filename: __filename
 }, async (client, message, match, { from, sender, quoted, isGroup, participants }) => {
   try {
