@@ -8,7 +8,7 @@ cmd({
   alias: ["allmenu", "Queen", "Asuna", "👸"],
   use: '.menu',
   desc: "Show all bot commands",
-  category: "menu",
+  category: "general",
   react: "👸",
   filename: __filename
 },
