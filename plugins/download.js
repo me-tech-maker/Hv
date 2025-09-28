@@ -11,7 +11,7 @@ cmd({
   alias: ["insta", "Instagram"],
   desc: "To download Instagram videos.",
   react: "🎥",
-  category: "DWLD",
+  category: "download",
   filename: __filename
 }, async (conn, m, store, { from, q, reply }) => {
   try {
@@ -49,7 +49,7 @@ cmd({
   pattern: "twitter",
   alias: ["tweet", "twdl"],
   desc: "Download Twitter videos",
-  category: "DWLD",
+  category: "download",
   filename: __filename
 }, async (conn, m, store, {
   from,
@@ -165,7 +165,7 @@ cmd({
   alias: ["mfire"],
   desc: "To download MediaFire files.",
   react: "🎥",
-  category: "DWLD",
+  category: "download",
   filename: __filename
 }, async (conn, m, store, {
   from,
@@ -221,7 +221,7 @@ cmd({
 cmd({
   pattern: "apk",
   desc: "Download APK from Aptoide.",
-  category: "DWLD",
+  category: "download",
   filename: __filename
 }, async (conn, m, store, {
   from,
@@ -279,7 +279,7 @@ cmd({
   pattern: "gdrive",
   desc: "Download Google Drive files.",
   react: "🌐",
-  category: "DWLD",
+  category: "download",
   filename: __filename
 }, async (conn, m, store, {
   from,
