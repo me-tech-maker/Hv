@@ -14,7 +14,7 @@ cmd({
     alias: ["mp3", "ytmp3"],
     react: "🎵",
     desc: "Download Ytmp3",
-    category: "DWLD",
+    category: "download",
     use: ".song <Text or YT URL>",
     filename: __filename
 }, async (conn, m, mek, { from, q, reply }) => {
