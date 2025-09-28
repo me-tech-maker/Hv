@@ -12,7 +12,7 @@ cmd({
     use: '.yts inconnu boy',
     react: "🔎",
     desc: "Search and get details from youtube.",
-    category: "SCH",
+    category: "search",
     filename: __filename
 
 },
