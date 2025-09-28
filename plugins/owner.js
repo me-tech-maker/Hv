@@ -5,7 +5,7 @@ cmd({
     pattern: "owner",
     react: "✅", 
     desc: "Get owner number",
-    category: "main",
+    category: "general",
     filename: __filename
 }, 
 async (conn, mek, m, { from, reply }) => {
@@ -31,12 +31,12 @@ async (conn, mek, m, { from, reply }) => {
         await conn.sendMessage(from, {
             image: { url: 'https://files.catbox.moe/p1xybt.jpg' },
             caption: `
-╭━━━〔 *👑 OWNER INFO* 〕━━━╮
+╭━━〔 *OWNER INFO* 〕━━╮
 ┃ ✦ *Nom* : ${ownerName}
 ┃ ✦ *Numéro* : ${ownerNumber}
 ┃ ✦ *Bot* : QUEEN ASUNA MD
 ┃ ✦ *Version* : 1.0.0 Beta
-╰━━━━━━━━━━━━━━━━━━━━━━━╯
+╰━━━━━━━━━━━━━━━━━━╯
 *⚡POWERED BY INCONNU BOY ⚡*
             `.trim(),
             contextInfo: {
