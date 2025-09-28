@@ -10,7 +10,7 @@ cmd({
     pattern: "admin-events",
     alias: ["adminevents"],
     desc: "Enable or disable admin event notifications",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -32,7 +32,7 @@ cmd({
     pattern: "welcome",
     alias: ["welcomeset"],
     desc: "Enable or disable welcome messages for new members",
-    category: "settings",
+    category: "group",
     filename: __filename
 },
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -55,7 +55,7 @@ cmd({
     alias: ["prefix"],
     react: "🔧",
     desc: "Change the bot's command prefix.",
-    category: "settings",
+    category: "owner",
     filename: __filename,
 }, async (conn, mek, m, { from, args, isOwner, reply }) => {
     if (!isOwner) return reply("*📛 Only the owner can use this command!*");
@@ -74,7 +74,7 @@ cmd({
     alias: ["setmode"],
     react: "🫟",
     desc: "Set bot mode to private or public.",
-    category: "settings",
+    category: "owner",
     filename: __filename,
 }, async (conn, mek, m, { from, args, isOwner, reply }) => {
     if (!isOwner) return reply("*📛 Only the owner can use this command!*");
@@ -100,7 +100,7 @@ cmd({
 cmd({
     pattern: "auto-typing",
     description: "Enable or disable auto-typing feature.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -122,7 +122,7 @@ cmd({
     pattern: "mention-reply",
     alias: ["menetionreply", "mee"],
     description: "Set bot status to always online or offline.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -149,7 +149,7 @@ cmd({
     pattern: "always-online",
     alias: ["alwaysonline"],
     desc: "Enable or disable the always online mode",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -174,7 +174,7 @@ cmd({
     pattern: "auto-recording",
     alias: ["autorecoding"],
     description: "Enable or disable auto-recording feature.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -201,7 +201,7 @@ cmd({
     pattern: "auto-seen",
     alias: ["autostatusview"],
     desc: "Enable or disable auto-viewing of statuses",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -226,7 +226,7 @@ cmd({
     pattern: "status-react",
     alias: ["statusreaction"],
     desc: "Enable or disable auto-liking of statuses",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -252,7 +252,7 @@ cmd({
     pattern: "read-message",
     alias: ["autoread"],
     desc: "enable or disable readmessage.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -277,7 +277,7 @@ cmd({
     pattern: "auto-voice",
     alias: ["autovoice"],
     desc: "enable or disable readmessage.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -304,7 +304,7 @@ cmd({
     pattern: "anti-bad",
     alias: ["antibadword"],
     desc: "enable or disable antibad.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -329,7 +329,7 @@ cmd({
     pattern: "auto-sticker",
     alias: ["autosticker"],
     desc: "enable or disable auto-sticker.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -354,7 +354,7 @@ cmd({
     pattern: "auto-reply",
     alias: ["autoreply"],
     desc: "enable or disable auto-reply.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -380,7 +380,7 @@ cmd({
     pattern: "auto-react",
     alias: ["autoreact"],
     desc: "Enable or disable the autoreact feature",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
@@ -405,7 +405,7 @@ cmd({
     pattern: "status-reply",
     alias: ["autostatusreply"],
     desc: "enable or disable status-reply.",
-    category: "settings",
+    category: "owner",
     filename: __filename
 },    
 async (conn, mek, m, { from, args, isOwner, reply }) => {
