@@ -6,7 +6,7 @@ cmd({
     pattern: 'convert',
     alias: ['sticker2img', 'stoimg', 'stickertoimage', 's2i'],
     desc: 'Convert stickers to images',
-    category: 'media',
+    category: 'tools',
     react: '🖼️',
     filename: __filename
 }, async (client, match, message, { from }) => {
@@ -50,7 +50,7 @@ cmd({
 cmd({
     pattern: 'tomp3',
     desc: 'Convert media to audio',
-    category: 'audio',
+    category: 'tools',
     react: '🎵',
     filename: __filename
 }, async (client, match, message, { from }) => {
@@ -100,7 +100,7 @@ cmd({
 cmd({
     pattern: 'toptt',
     desc: 'Convert media to voice message',
-    category: 'audio',
+    category: 'tools',
     react: '🎙️',
     filename: __filename
 }, async (client, match, message, { from }) => {
