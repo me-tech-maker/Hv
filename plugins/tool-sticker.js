@@ -17,7 +17,7 @@ cmd(
     pattern: 'vsticker',
     alias: ['gsticker', 'g2s', 'gs', 'v2s', 'vs',],
     desc: 'Convert GIF/Video to a sticker.',
-    category: 'sticker',
+    category: 'tools',
     use: '<reply media or URL>',
     filename: __filename,
   },
@@ -62,7 +62,7 @@ cmd({
     pattern: "attp",
     desc: "Convert text to a GIF sticker.",
     react: "✨",
-    category: "convert",
+    category: "tools",
     use: ".attp HI",
     filename: __filename,
 }, async (conn, mek, m, { args, reply }) => {
