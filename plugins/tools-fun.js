@@ -351,7 +351,7 @@ cmd({
   pattern: "readmore",
   alias: ["rm", "rmore", "readm"],
   desc: "Generate a Read More message.",
-  category: "convert",
+  category: "tools",
   use: ".readmore <text>",
   react: "📝",
   filename: __filename
