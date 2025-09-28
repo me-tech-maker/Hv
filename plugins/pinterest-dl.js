@@ -5,7 +5,7 @@ cmd({
     pattern: "pindl",
     alias: ["pinterestdl", "pin", "pins", "pindownload"],
     desc: "Download media from Pinterest",
-    category: "DWLD",
+    category: "download",
     filename: __filename
 }, async (conn, mek, m, { args, quoted, from, reply }) => {
     try {
