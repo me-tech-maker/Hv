@@ -5,7 +5,7 @@ cmd({
   pattern: "fb",
   alias: ["facebook", "fbdl"],
   desc: "Download Facebook videos",
-  category: "DWLD",
+  category: "download",
   filename: __filename,
   use: "<Facebook URL>",
 }, async (conn, m, store, { from, args, q, reply }) => {
