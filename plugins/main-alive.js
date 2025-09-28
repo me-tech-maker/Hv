@@ -7,7 +7,7 @@ cmd({
     pattern: "alive",
     alias: ["bot", "live"],
     desc: "Check bot is alive or not",
-    category: "main",
+    category: "general",
     react: "🤍",
     filename: __filename
 },
