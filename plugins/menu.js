@@ -45,22 +45,25 @@ async (conn, mek, m, { from, reply }) => {
       return `${h}h ${m}m ${s}s`;
     };
 
-    let menuText = `
-╭━━━〔 *𝐐𝐔𝐄𝐄𝐍-𝐀𝐒𝐔𝐍𝐀* 〕━━╮
-┃ ✦ ᴀᴜᴛʜᴏʀ : @${m.sender.split("@")[0]}
-┃ ✦ ʀᴜɴᴛɪᴍᴇ : ${uptime()}
-┃ ✦ ᴍᴏᴅᴇ : *${config.MODE}*
-┃ ✦ ᴘʀᴇғɪx : [${config.PREFIX}]
-┃ ✦ ᴄᴍᴅs : ${totalCommands}
-┃ ✦ ᴅᴇᴠ : *ɪɴᴄᴏɴɴᴜ ʙᴏʏ*
-┃ ✦ ᴠᴇʀ : *1.0.0*
-╰━━━━━━━━━━━━━━━━━╯
+    // Calcul de l'utilisation mémoire
+    const used = process.memoryUsage();
+    const memoryUsage = Math.round(used.rss / 1024 / 1024) + ' MB';
 
-╭──〔 *WELCOME TO* 〕──╮
-│ *♛ QUEEN ASUNA MD ♛*
-╰─────────────────╯
+    let menuText = `
+╭───────────────⭓
+│ ʙᴏᴛ : *Qᴜᴇᴇɴ Aꜱᴜɴᴀ Mᴅ*
+│ ᴜsᴇʀ: @${m.sender.split("@")[0]}
+│ ᴘʀᴇғɪx: ${config.PREFIX}
+│ ᴜᴘᴛɪᴍᴇ: ${uptime()}
+│ ᴍᴇᴍᴏʀʏ : ${memoryUsage}
+│ ᴄᴏᴍᴍᴀɴᴅs: ${totalCommands}
+│ ᴅᴇᴠ: ɪɴᴄᴏɴɴᴜ ʙᴏʏ
+╰───────────────⭓
 `;
 
+    // Catégories dans l'ordre spécifié
+    const categoryOrder = ['tools', 'logo', 'ai', 'search', 'owner', 'download', 'fun', 'general', 'group', 'bug'];
+    
     // Créer les catégories
     let category = {};
     for (let cmd of commands) {
@@ -69,16 +72,34 @@ async (conn, mek, m, { from, reply }) => {
       category[cmd.category].push(cmd);
     }
 
-    const keys = Object.keys(category).sort();
-    for (let k of keys) {
-      menuText += `\n╭───〔 *${k.toUpperCase()} MENU* 〕───╮`;
-      const cmds = category[k].filter(c => c.pattern).sort((a, b) => a.pattern.localeCompare(b.pattern));
-      cmds.forEach((cmd) => {
-        const usage = cmd.pattern.split('|')[0];
-        menuText += `\n│ ✧ 👸${usage}`;
-      });
-      menuText += `\n╰──────────────────╯`;
+    // Afficher les catégories dans l'ordre spécifié
+    for (let cat of categoryOrder) {
+      if (category[cat]) {
+        const categoryNames = {
+          'tools': '🌐 ᴛᴏᴏʟs',
+          'logo': '🎨 ʟᴏɢᴏ',
+          'ai': '🤖 ᴀɪ',
+          'search': '🔍 sᴇᴀʀᴄʜ',
+          'owner': '👑 ᴏᴡɴᴇʀ',
+          'download': '📥 ᴅᴏᴡɴʟᴏᴀᴅ',
+          'fun': '🎭 ғᴜɴ',
+          'general': '⚙️ ɢᴇɴᴇʀᴀʟ',
+          'group': '👥 ɢʀᴏᴜᴘ',
+          'bug': '🐞 ʙᴜɢ'
+        };
+
+        menuText += `\n⭓───────────────⭓『 ${categoryNames[cat] || cat.toUpperCase()} 』`;
+        
+        const cmds = category[cat].filter(c => c.pattern).sort((a, b) => a.pattern.localeCompare(b.pattern));
+        cmds.forEach((cmd) => {
+          const usage = cmd.pattern.split('|')[0].trim();
+          menuText += `\n│ ⬡ ${usage}`;
+        });
+        menuText += `\n╰──────────────────⭓`;
+      }
     }
+
+    menuText += `\n> *ᴍᴀᴅᴇ ɪɴ ʙʏ ɪɴᴄᴏɴɴᴜ ʙᴏʏ*`;
 
     // Envoie final avec image
     await conn.sendMessage(from, {
@@ -101,4 +122,3 @@ async (conn, mek, m, { from, reply }) => {
     reply(`❌ Error: ${e.message}`);
   }
 });
-      
