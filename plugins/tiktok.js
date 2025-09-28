@@ -5,7 +5,7 @@ cmd({
     pattern: "tiktok",
     alias: ["ttdl", "tt", "tiktokdl"],
     desc: "Download TikTok video without watermark",
-    category: "DWLD",
+    category: "download",
     react: "🎵",
     filename: __filename
 },
