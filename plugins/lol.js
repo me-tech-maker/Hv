@@ -40,11 +40,11 @@ async (conn, mek, m, { from, reply }) => {
     await delay(300); // petite pause pour l'effet
     await conn.sendMessage(from, {
       text: `
-╭━━〔 *📡 SPEED TEST* 〕━━╮
-┃ ⚙️ *Bot* : *QUEEN ASUNA MD*
-┃ ⚡ *Ping* : ${ping} ms
-┃ ⏱️ *Checked at* : ${moment().format("HH:mm:ss")}
-╰━━━━━━━━━━━━━━━━━━━━━━╯
+╭━━〔 *SPEED TEST* 〕━━╮
+┃ *Bot* : *QUEEN ASUNA MD*
+┃ *Ping* : ${ping} ms
+┃ *Checked at* : ${moment().format("HH:mm:ss")}
+╰━━━━━━━━━━━━━━━━━━━╯
 `.trim(),
       edit: msg.key
     });
