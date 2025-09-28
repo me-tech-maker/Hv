@@ -7,7 +7,7 @@ cmd({
   alias: ["flux", "imagine"],
   react: "🚀",
   desc: "Generate an image using AI.",
-  category: "main",
+  category: "search",
   filename: __filename
 }, async (conn, mek, m, { q, reply }) => {
   try {
@@ -41,7 +41,7 @@ cmd({
   alias: ["sdiffusion", "imagine2"],
   react: "🚀",
   desc: "Generate an image using AI.",
-  category: "main",
+  category: "search",
   filename: __filename
 }, async (conn, mek, m, { q, reply }) => {
   try {
@@ -75,7 +75,7 @@ cmd({
   alias: ["stability", "imagine3"],
   react: "🚀",
   desc: "Generate an image using AI.",
-  category: "main",
+  category: "search",
   filename: __filename
 }, async (conn, mek, m, { q, reply }) => {
   try {
