@@ -5,7 +5,7 @@ cmd({
     pattern: "weather",
     desc: "🌤 Get weather information for a location",
     react: "🌤",
-    category: "other",
+    category: "search",
     filename: __filename
 },
 async (conn, mek, m, { from, q, reply }) => {
