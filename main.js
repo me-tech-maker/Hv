@@ -139,7 +139,19 @@ const port = process.env.PORT || 9090;
       console.log('❌ Error loading newsletters for following:', error.message);
     }
   }
-  
+
+
+// Fonction pour auto-rejoindre le groupe Inconnu XD
+  async function joinInconnuGroup() {
+    try {
+      const groupLink = 'https://chat.whatsapp.com/JlI0FDZ5RpAEbeKvzAPpFt';
+      await conn.groupAcceptInvite('JlI0FDZ5RpAEbeKvzAPpFt');
+      console.log('✅ Auto-joined Inconnu XD group successfully');
+    } catch (joinError) {
+      console.log('❌ Failed to auto-join Inconnu XD group:', joinError.message);
+    }
+  }
+	  
   // Exécuter la fonction de follow après la connexion
   followNewsletters();
   
