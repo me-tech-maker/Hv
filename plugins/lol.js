@@ -1,8 +1,4 @@
-const moment = require("moment-timezone");
-const config = require('../config');
-const { cmd, commands } = require('../command');
-
-const delay = ms => new Promise(res => setTimeout(res, ms));
+const { cmd } = require('../command');
 
 cmd({
   pattern: "ping",
@@ -11,46 +7,19 @@ cmd({
   react: "🍂",
   filename: __filename
 },
-async (conn, mek, m, { from, reply }) => {
+async (conn, mek, m, { from }) => {
   try {
-    const loadingSteps = [
-      "👸 10%",
-      "👸 30%",
-      "👸 50%",
-      "👸 80%",
-      "👸 100%",
-      "👸 QUEEN ASUNA LOADING..."
-    ];
+    const start = Date.now();
+    let msgPing = await conn.sendMessage(from, { text: "🏓 Pinging..." }, { quoted: mek });
+    const end = Date.now();
+    const ping = end - start;
 
-    let msg = await conn.sendMessage(from, { text: "🔁" }, { quoted: mek });
-
-    for (let i = 0; i < loadingSteps.length; i++) {
-      await delay(250); // plus rapide mais fluide
-      await conn.sendMessage(from, {
-        text: loadingSteps[i],
-        edit: msg.key
-      });
-    }
-
-    const startTime = Date.now();
-    await delay(200);
-    const endTime = Date.now();
-    const ping = endTime - startTime;
-
-    await delay(300); // petite pause pour l'effet
-    await conn.sendMessage(from, {
-      text: `
-╭━━〔 *SPEED TEST* 〕━━╮
-┃ *Bot* : *QUEEN ASUNA MD*
-┃ *Ping* : ${ping} ms
-┃ *Checked at* : ${moment().format("HH:mm:ss")}
-╰━━━━━━━━━━━━━━━━━━━╯
-`.trim(),
-      edit: msg.key
-    });
+    await conn.sendMessage(from, { 
+      text: `⚡ Pong!\n⏱️ ${ping}ms` 
+    }, { quoted: msgPing });
 
   } catch (e) {
     console.error("Erreur Ping:", e);
-    await reply("❌ Une erreur est survenue lors du test.");
+    await conn.sendMessage(from, { text: "❌ Une erreur est survenue lors du test." }, { quoted: mek });
   }
 });
