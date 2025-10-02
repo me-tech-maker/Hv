@@ -1,3 +1,5 @@
+
+
 const config = require('../config')
 const { cmd } = require('../command')
 const { getGroupAdmins } = require('../inconnuboy/functions')
@@ -38,22 +40,21 @@ async (conn, mek, m, { from, participants, reply, isGroup, senderNumber, groupAd
 
         // Design du message
         let teks = `
-
-- *Group Name* : ${groupName}
-- *Admins* : ${totalAdmins}
-- *Members* : ${totalMembers}
-- *Message* : ${message}
-
-
-┌───⊷ *MENTIONS*
+╭───────────────⭓
+│ *Group* : ${groupName}
+│ *Admins* : ${totalAdmins}
+│ *Members* : ${totalMembers}
+│ *Message* : ${message}
+│
+├───⊷ *MENTIONS*
 `;
 
         for (let mem of participants) {
             if (!mem.id) continue;
-            teks += `🔔 @${mem.id.split('@')[0]}\n`;
+            teks += `│ 🔔 @${mem.id.split('@')[0]}\n`;
         }
 
-        teks += "└───⊷ *QUEEN ASUNA MD*";
+        teks += "╰───────────────⭓\n*👑 QUEEN ASUNA MD*";
 
         conn.sendMessage(from, { 
             text: teks, 
